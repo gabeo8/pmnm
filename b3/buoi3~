@@ -1,0 +1,52 @@
+student@P07M13:~/Documents/b3$ ]gcc -c factor.c^C
+student@P07M13:~/Documents/b3$ gcc -c factor.c
+student@P07M13:~/Documents/b3$ gcc -c combine.c
+student@P07M13:~/Documents/b3$ gcc -c sum.c
+student@P07M13:~/Documents/b3$ gcc -c sum_p.c
+student@P07M13:~/Documents/b3$ ar rcs libfunc.a factor.o combine.o sum.o sum_p.o
+student@P07M13:~/Documents/b3$ 
+
+student@P07M13:~/Documents/b3$ gcc -o myprog  myprog.c libfunc.a 
+student@P07M13:~/Documents/b3$ ./myprog 
+Giai thua cua 5 la: 120
+Combine cua 5, 4 la: 210
+Sum 1+2+3+4+5+6+7+8+9+10 = 55
+Sum 2+4+6+8+10 = 30
+student@P07M13:~/Documents/b3$ 
+student@P07M13:~/Documents/b3$ make
+gcc -c factor.c	
+gcc -c combine.c
+gcc -c sum.c
+gcc -c sum_p.c
+ar rcs libfunc.a factor.o combine.o sum.o sum_p.o
+gcc -o myprog myprog.c libfunc.a
+student@P07M13:~/Documents/b3$ ./myprog 
+Giai thua cua 5 la: 120
+Combine cua 5, 4 la: 210
+Sum 1+2+3+4+5+6+7+8+9+10 = 55
+Sum 2+4+6+8+10 = 30
+student@P07M13:~/Documents/b3$ 
+student@P07M13:~/Documents/b3/bst$ ls
+bintree  bintree.c  bst.c  bst.h  bstx.c  bstx.h  Makefile  Makefile-cau-c
+
+student@P07M13:~/Documents/b3/bst$ export LD_LIBRARY_PATH=$(pwd)
+student@P07M13:~/Documents/b3/bst$ make
+gcc -c -fPIC bst.c
+gcc -c -fPIC bstx.c
+gcc -shared -Wl,-soname,libbst.so.1.0 -o libbst.so.1.0 bst.o bstx.o
+student@P07M13:~/Documents/b3/bst$ 
+student@P07M13:~/Documents/b3/bst$ make link
+ln libbst.so.1.0 libbst.so
+student@P07M13:~/Documents/b3/bst$ make -f Makefile-cau-c 
+gcc -o bintree bintree.c libbst.so
+./bintree
+1 2 3 4 5 
+Chieu cao cua cay: 3
+
+Tim thay 4
+
+Khong tim thay 10
+Do sau cua khoa 3 la 3
+student@P07M13:~/Documents/b3/bst$
+
+
